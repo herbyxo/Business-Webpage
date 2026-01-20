@@ -1,18 +1,20 @@
-import './globals.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import './globals.css'
 
 export const metadata = {
-  title: 'HerbertAI',
-  description: 'AI receptionist demo',
+  title: 'Herbert AI - AI Receptionist Services',
+  description: 'Never miss a customer. AI-powered call answering and appointment booking.',
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen">
+      <body className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

@@ -1,15 +1,20 @@
+import Link from 'next/link'
+
 export default function Header() {
-    return (
-      <header className="bg-blue-600 text-white p-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold">HerbertAI</h1>
-        <nav>
-          <a className="px-3 hover:underline" href="/">Home</a>
-          <a className="px-3 hover:underline" href="/demo">Demo</a>
-          <a className="px-3 hover:underline" href="/about">About</a>
-          <a className="px-3 hover:underline" href="/faq">FAQ</a>
-          <a className="px-3 hover:underline" href="/contact">Contact</a>
+  return (
+    <header className="bg-white border-b border-gray-200 py-4">
+      <div className="container mx-auto flex justify-between items-center px-4">
+        <Link href="/" className="text-2xl font-semibold text-gray-900 hover:text-gray-700 transition">
+          Herbert AI
+        </Link>
+        <nav className="flex gap-8">
+          <Link className="text-gray-600 hover:text-gray-900 transition font-medium" href="/">Home</Link>
+          <Link className="text-gray-600 hover:text-gray-900 transition font-medium" href="/demo">Demo</Link>
+          <Link className="text-gray-600 hover:text-gray-900 transition font-medium" href="/about">About</Link>
+          <Link className="text-gray-600 hover:text-gray-900 transition font-medium" href="/faq">FAQ</Link>
+          <Link className="text-gray-600 hover:text-gray-900 transition font-medium" href="/contact">Contact</Link>
         </nav>
-      </header>
-    )
-  }
-  
+      </div>
+    </header>
+  )
+}

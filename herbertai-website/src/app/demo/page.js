@@ -10,7 +10,7 @@ export default function Demo() {
           </h1>
           <p className="text-xl text-gray-600 font-light max-w-3xl mx-auto">
             Watch how Herbert AI handles customer calls professionally, books appointments, 
-            and captures important information—all while you focus on your business.
+            and captures important information - all while you focus on your business.
           </p>
         </div>
 

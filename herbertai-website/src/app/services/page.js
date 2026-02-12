@@ -278,11 +278,14 @@ export default function Services() {
                   herbert_aisolutions@outlook.com
                 </a>
               </div>
-              <div>
-                <div className="text-3xl mb-2">📅</div>
-                <h3 className="font-semibold text-gray-900 mb-1">Book a Call</h3>
-                <p className="text-gray-600 text-sm">Free 15-min consultation</p>
-              </div>
+              <Link 
+                href="https://calendly.com/herbert_aisolutions/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-10 py-4 bg-black text-white rounded-full font-medium text-lg hover:bg-gray-800 transition"
+                >
+                Book Free Call
+                </Link>
             </div>
 
             <Link 

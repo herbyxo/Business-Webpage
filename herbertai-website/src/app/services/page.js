@@ -278,6 +278,7 @@ export default function Services() {
                   herbert_aisolutions@outlook.com
                 </a>
               </div>
+              <div>
               <Link 
                 href="https://calendly.com/herbert_aisolutions/30min"
                 target="_blank"
@@ -286,6 +287,7 @@ export default function Services() {
                 >
                 Book Free Call
                 </Link>
+            </div>
             </div>
 
             <Link 

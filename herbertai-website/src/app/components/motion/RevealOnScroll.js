@@ -23,7 +23,7 @@ export default function RevealOnScroll({
   children,
   delay = 0,
   y = 32,
-  duration = 0.7,
+  duration = 0.55,
   once = true,
   className,
   as = 'div',
@@ -35,7 +35,7 @@ export default function RevealOnScroll({
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, margin: '0px 0px 10% 0px' }}
+      viewport={{ once, margin: '0px 0px 20% 0px' }}
       transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
       {...rest}
     >

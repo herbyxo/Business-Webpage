@@ -56,7 +56,7 @@ export default function Footer() {
             </Link>
             <p className="text-muted text-[14px] leading-[1.6] max-w-md">
               Adelaide-based automation &amp; growth for SMBs.
-              Custom-built systems &mdash; ads, websites, dashboards, voice agents,
+              Custom-built systems: ads, websites, dashboards, voice agents,
               workflows. Shipped in weeks, owned by you.
             </p>
           </div>

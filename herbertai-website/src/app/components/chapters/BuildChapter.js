@@ -51,7 +51,7 @@ export default function BuildChapter() {
             <RevealOnScroll delay={0.3}>
               <p className="mt-6 text-[15px] md:text-[16px] text-muted leading-[1.6] max-w-[42ch]">
                 Operator consoles. Customer portals. Bespoke booking flows.
-                Built from scratch on Next.js + Supabase &mdash; not Calendly with a logo, not a
+                Built from scratch on Next.js + Supabase. Not Calendly with a logo, not a
                 Shopify template. You own the code, the data, and the domain.
               </p>
             </RevealOnScroll>

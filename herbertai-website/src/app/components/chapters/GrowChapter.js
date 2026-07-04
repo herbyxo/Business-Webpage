@@ -52,8 +52,8 @@ export default function GrowChapter() {
 
             <RevealOnScroll delay={0.3}>
               <p className="mt-6 text-[15px] md:text-[16px] text-muted leading-[1.6] max-w-[42ch]">
-                Paid ad campaigns. SEO that ranks you on page one. Automated SMS &mdash; reminders,
-                review requests, follow-ups. Conversion analytics so you know what&rsquo;s working &mdash;
+                Paid ad campaigns. SEO that ranks you on page one. Automated SMS: reminders,
+                review requests, follow-ups. Conversion analytics so you know what&rsquo;s working
                 and what isn&rsquo;t.
               </p>
             </RevealOnScroll>
@@ -151,7 +151,7 @@ function MockSEOResult() {
           <span className="truncate">forgebarber.com.au</span>
         </div>
         <div className="text-[16px] md:text-[17px] font-medium text-ink leading-[1.25] mb-1.5 hover:underline cursor-default">
-          Forge Barber &mdash; Sharp cuts in the CBD | Walk-ins welcome
+          Forge Barber | Sharp cuts in the CBD &middot; Walk-ins welcome
         </div>
         <div className="flex items-center gap-2 mb-2">
           <div className="flex text-amber-500 text-[12px] leading-none">★★★★★</div>
@@ -164,7 +164,7 @@ function MockSEOResult() {
       {/* Ranking-change badge */}
       <div className="bg-cream-alt px-4 py-2.5 flex items-center gap-2 border-t border-line">
         <span className="text-green-deep text-[14px] leading-none" aria-hidden>↑</span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-soft">Now #1 &mdash; up from page 2</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-soft">Now #1 &middot; up from page 2</span>
       </div>
     </div>
   )
@@ -190,7 +190,7 @@ function MockAdCreative() {
       </div>
       <div className="px-4 pb-3">
         <p className="text-[13px] text-ink-soft leading-[1.45]">
-          Looking for a fresh cut? Book your chair in 60 seconds &mdash; walk-ins welcome.
+          Looking for a fresh cut? Book your chair in 60 seconds, walk-ins welcome.
         </p>
       </div>
       {/* Image area — placeholder for client photo */}
@@ -248,7 +248,7 @@ function MockSMSConversation() {
         <div className="flex justify-end">
           <div className="bg-green text-ink rounded-2xl rounded-tr-md px-4 py-2.5 max-w-[85%]">
             <p className="text-[14px] leading-[1.4]">
-              Just did &mdash; easy 5 stars. Best fade I&rsquo;ve had.
+              Just did, easy 5 stars. Best fade I&rsquo;ve had.
             </p>
           </div>
         </div>

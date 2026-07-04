@@ -52,7 +52,7 @@ export default function AutomateChapter() {
               <p className="mt-6 text-[15px] md:text-[16px] text-muted leading-[1.6] max-w-[42ch]">
                 AI voice agents that answer every call. Chatbots that capture leads at 2am.
                 Tool-to-tool workflows that stitch your stack together. The boring work
-                happens on its own &mdash; you see the outcomes, not the process.
+                happens on its own. You see the outcomes, not the process.
               </p>
             </RevealOnScroll>
           </div>
@@ -123,7 +123,7 @@ function MockupSlot({ y, index, side, rotate, bleed = false, delay = 0, label, c
 /* ─── Mock #1: Voice agent transcript (with real audio proof) ──── */
 function MockVoiceTranscript() {
   const lines = [
-    { who: 'caller', t: '00:04', text: "Yeah, hi, I've got a walk-in freezer that's gone warm — we're a restaurant, it's stocked." },
+    { who: 'caller', t: '00:04', text: "Yeah, hi, I've got a walk-in freezer that's gone warm, we're a restaurant, it's stocked." },
     { who: 'agent', t: '00:11', text: 'No worries, I can get a tech to you. Where are you based?' },
     { who: 'caller', t: '00:16', text: 'North Sydney. Stock\'s going to start spoiling pretty soon.' },
     { who: 'agent', t: '00:20', text: "Right, I'll flag it as urgent. Best contact number for the tech to call ahead?" },
@@ -291,7 +291,7 @@ function MockChatbotConversation() {
         <div className="flex">
           <div className="bg-white border border-line rounded-2xl rounded-tl-md px-3.5 py-2.5 max-w-[88%]">
             <p className="text-[13px] text-ink leading-[1.45] mb-2">
-              Yep &mdash; if you book before 11am, we&rsquo;ll usually be on-site that afternoon. What suburb are you in?
+              Yep, if you book before 11am we&rsquo;ll usually be on-site that afternoon. What suburb are you in?
             </p>
             <div className="flex gap-1.5 flex-wrap">
               <button className="text-[11px] text-ink border border-line rounded-full px-2.5 py-1 bg-cream-alt">

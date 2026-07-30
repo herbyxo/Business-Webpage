@@ -20,13 +20,6 @@ export default function Thanks() {
           function gtag(){dataLayer.push(arguments);}
           gtag('event', 'conversion', { send_to: 'AW-18228080032/RaGxCLSS6bwcEKDb6fND' });`}
       </Script>
-      {/* Meta Pixel Lead — self-contained init+Lead so it fires even if the
-          layout pixel hasn't bootstrapped yet (same race we hit with gtag). */}
-      <Script id="fb-lead" strategy="afterInteractive">
-        {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '908669592247048');
-          fbq('track', 'Lead');`}
-      </Script>
       <div className="max-w-[1280px] mx-auto px-6 lg:px-12 min-h-[80vh] flex flex-col justify-center py-20 md:py-28">
         <div className="flex items-center gap-3 mb-7 font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
           <span className="w-1.5 h-1.5 rounded-full bg-green-deep" />

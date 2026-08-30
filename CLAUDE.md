@@ -49,47 +49,10 @@ Sub-line: *"Adelaide-based automation & growth studio. Custom-built, shipped in 
 ---
 
 ## Project Structure
-```
-src/
-  app/
-    components/
-      Header.js       — 'use client', mobile hamburger menu, nav dropdown
-      Footer.js       — minimal copyright
-    page.js           — homepage
-    layout.js         — root layout, wraps Header + Footer
-    globals.css       — Tailwind import
-    about/page.js
-    contact/page.js
-    faq/page.js
-    pricing/page.js
-    services/page.js
-    portfolio/
-      voice/page.js     — Master Freeze demo card + audio player
-      websites/page.js  — 3 demo website projects with lightbox
-      chatbots/page.js  — coming soon placeholder
-public/
-  logo.png            — 32x32 Herbert AI logo
-  steve-demo.wav      — Master Freeze unedited call recording
-```
 
----
+The app lives in `herbertai-website/` (repo root is a wrapper). Routes are ground truth — enumerate with `find src/app -name page.js` rather than trusting any list written here. When adding or retiring a route, update all of: page metadata + `alternates.canonical`, `src/app/sitemap.js` (hand-maintained array), `public/llms.txt`, `Header.js` nav, and a `next.config.mjs` redirect if retiring a URL.
 
-## Legacy conventions (being phased out — see CHARTER.md instead)
-
-**Color palette:**
-- Background: `bg-white` or `bg-gray-50`
-- Text: `text-gray-900` (primary), `text-gray-600` (secondary)
-- Borders: `border-gray-200`
-- CTA buttons: `bg-black text-white rounded-full` (primary), `border-2 border-black rounded-full` (outline)
-- Dark sections: `bg-black text-white`
-
-**Layout:** All sections use `container mx-auto px-4` with `max-w-5xl`. Sections alternate `bg-white` / `bg-gray-50`.
-
-**New pages:** `src/app/[route]/page.js` — server components by default, `py-20` padding on sections.
-
-**New components:** `src/app/components/` — add to both desktop and mobile nav in Header.js if needed.
-
-**Never:** introduce new colors, use CSS modules, add styled-components, or use TypeScript.
+**Conventions:** plain JS server components by default, Tailwind v4 utilities only, no CSS modules, no styled-components, no TypeScript, no new colours outside CHARTER.md tokens.
 
 ---
 
@@ -103,14 +66,11 @@ public/
 ---
 
 ## Business Context (for content/copy decisions)
-- **Pitch:** Solo tradies miss 3-5 calls/week on the tools. At ~$400/callout that's $5k+/mo lost. Herbert catches those calls.
-- **Pricing:** $299 setup + $149–299/mo. Month-to-month, no lock-in. Two-week free trial.
-- **ICP:** Solo operators, electricians/plumbers/HVAC, Adelaide-based, mobile-only number
-- **Core flow:** Customer calls → Retell agent → n8n → AroFlo job created → SMS confirmation
+- **Positioning:** automation & growth studio for SMBs — Grow / Automate / Build service buckets. Voice agents are one service, not the identity.
+- **Pricing story:** priced on scope, no public price list (see `/pricing` — "Priced on scope. Not on a menu."). Never publish hard dollar figures or name specific clients in site copy — describe the class of work instead.
+- **ICP:** small businesses 5–30 staff across trades, hospitality, property, accounting, health, creative.
 
 ---
 
 ## Current Pages
-`/` `/services` `/pricing` `/about` `/faq` `/contact` `/portfolio/voice` `/portfolio/websites` `/portfolio/chatbots`
-
-Services page has anchor links: `#website` `#voice` `#chatbot`
+Enumerate from `src/app/**/page.js` (currently: `/`, `/about`, `/ai-receptionist`, `/automation-adelaide`, `/contact`, `/faq`, `/google-ads-adelaide`, `/industries`, `/pricing`, `/privacy`, `/services`, `/start`, `/start/thanks`, `/web-design-adelaide`). Keep `sitemap.js` and `llms.txt` in sync with this set.

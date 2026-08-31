@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python \"C:/Files/Herbert AI/website/.claude/hooks/lint_on_edit.py\"",
+            "command": "python \"C:/Files/Herbert AI/code/Website/.claude/hooks/lint_on_edit.py\"",
             "timeout": 60
           }
         ]

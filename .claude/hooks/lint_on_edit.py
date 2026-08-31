@@ -6,7 +6,7 @@ import json
 import subprocess
 import sys
 
-APP_DIR = "C:/Files/Herbert AI/website/herbertai-website"
+APP_DIR = "C:/Files/Herbert AI/code/Website/herbertai-website"
 
 
 def main():

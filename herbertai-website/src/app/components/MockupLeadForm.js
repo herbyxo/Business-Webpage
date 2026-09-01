@@ -1,0 +1,116 @@
+'use client'
+
+// The web-design-adelaide enquiry form.
+//
+// Submits to TWO places, deliberately:
+//   1. web3forms (the native form action, unchanged): the email copy, the
+//      autoresponse, the thanks redirect. The path that has always worked
+//      stays primary.
+//   2. /api/lead (fire-and-forget on submit): the marketing engine's lead
+//      intake, so an enquiry from an ad becomes a dashboard lead with
+//      attribution instead of only an email. keepalive: true because the
+//      web3forms POST navigates away immediately and would otherwise cancel
+//      this request mid-flight.
+//
+// If the engine call fails, nothing changes for the visitor: the email still
+// sends, the thanks page still loads. The engine copy is an addition, never a
+// dependency.
+
+export default function MockupLeadForm() {
+  function notifyEngine(e) {
+    try {
+      const form = e.currentTarget
+      const params = new URLSearchParams(window.location.search)
+      const body = JSON.stringify({
+        name: form.name?.value || '',
+        business: form.business?.value || '',
+        email: form.email?.value || '',
+        phone: form.phone?.value || '',
+        current_website: form.website?.value || '',
+        message: form.message?.value || '',
+        gclid: params.get('gclid') || '',
+        utm_campaign: params.get('utm_campaign') || '',
+        page: window.location.pathname,
+      })
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body,
+        keepalive: true,
+      }).catch(() => {})
+    } catch {
+      // Never block the real submit.
+    }
+  }
+
+  return (
+    <form action="https://api.web3forms.com/submit" method="POST"
+      onSubmit={notifyEngine} className="space-y-5">
+      <input type="hidden" name="access_key" value="f3618e04-e007-4ee9-a80d-f96e3cc8d481" />
+      <input type="hidden" name="from_name" value="Herbert AI — Web Design Adelaide" />
+      <input type="hidden" name="subject" value="New mockup request — Web Design Adelaide" />
+      <input type="hidden" name="redirect" value="https://herbert-aisolutions.com/start/thanks" />
+      <input
+        type="hidden"
+        name="autoresponse_subject"
+        value="Thanks, I've got your details"
+      />
+      <input
+        type="hidden"
+        name="autoresponse_message"
+        value="Thanks, I've got your details and I'll be in touch with your mockup shortly - Will"
+      />
+      {/* Honeypot for spam */}
+      <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
+
+      <Field id="name" label="Your name" type="text" placeholder="Your name" required />
+      <Field id="business" label="Business name" type="text" placeholder="Your business" required />
+      <Field id="email" label="Email" type="email" placeholder="you@business.com" required />
+      <Field id="phone" label="Phone (optional)" type="tel" placeholder="0400 000 000" />
+      <Field id="website" label="Current website (optional)" type="text" placeholder="yourbusiness.com.au — or 'none yet'" />
+
+      <div>
+        <label htmlFor="message" className="block font-mono text-[10px] uppercase tracking-[0.18em] text-muted mb-2">
+          What does your business do?
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          rows={4}
+          className="w-full px-4 py-3 bg-cream border border-line rounded-2xl text-[15px] text-ink placeholder:text-muted focus:border-ink transition-colors"
+          placeholder="e.g. Mobile dog grooming across the eastern suburbs — want online booking and a site that doesn't look like 2012."
+        />
+      </div>
+
+      <button
+        type="submit"
+        data-magnetic
+        className="w-full inline-flex items-center justify-center gap-2 bg-ink text-cream px-6 py-3.5 rounded-full font-semibold text-[15px] hover:bg-ink-soft transition-colors"
+      >
+        Send — get my free mockup <span aria-hidden>&rarr;</span>
+      </button>
+      <p className="text-[12px] text-muted text-center">
+        Free mockup, no obligation. Reply within a business day.
+      </p>
+    </form>
+  )
+}
+
+function Field({ id, label, type, placeholder, required }) {
+  return (
+    <div>
+      <label htmlFor={id} className="block font-mono text-[10px] uppercase tracking-[0.18em] text-muted mb-2">
+        {label}
+      </label>
+      <input
+        id={id}
+        name={id}
+        type={type}
+        required={required}
+        placeholder={placeholder}
+        className="w-full px-4 py-3 bg-cream border border-line rounded-2xl text-[15px] text-ink placeholder:text-muted focus:border-ink transition-colors"
+      />
+    </div>
+  )
+}

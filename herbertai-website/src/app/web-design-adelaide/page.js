@@ -1,4 +1,5 @@
 import RevealOnScroll from '../components/motion/RevealOnScroll'
+import MockupLeadForm from '../components/MockupLeadForm'
 
 export const metadata = {
   title: { absolute: 'Web Design Adelaide | Free Homepage Mockup in 48 Hours' },
@@ -210,55 +211,7 @@ export default function WebDesignAdelaide() {
 
           <RevealOnScroll>
             <div className="bg-cream border border-line rounded-3xl p-8 md:p-10">
-              <form action="https://api.web3forms.com/submit" method="POST" className="space-y-5">
-                <input type="hidden" name="access_key" value="f3618e04-e007-4ee9-a80d-f96e3cc8d481" />
-                <input type="hidden" name="from_name" value="Herbert AI — Web Design Adelaide" />
-                <input type="hidden" name="subject" value="New mockup request — Web Design Adelaide" />
-                <input type="hidden" name="redirect" value="https://herbert-aisolutions.com/start/thanks" />
-                <input
-                  type="hidden"
-                  name="autoresponse_subject"
-                  value="Thanks, I've got your details"
-                />
-                <input
-                  type="hidden"
-                  name="autoresponse_message"
-                  value="Thanks, I've got your details and I'll be in touch with your mockup shortly - Will"
-                />
-                {/* Honeypot for spam */}
-                <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
-
-                <Field id="name" label="Your name" type="text" placeholder="Your name" required />
-                <Field id="business" label="Business name" type="text" placeholder="Your business" required />
-                <Field id="email" label="Email" type="email" placeholder="you@business.com" required />
-                <Field id="phone" label="Phone (optional)" type="tel" placeholder="0400 000 000" />
-                <Field id="website" label="Current website (optional)" type="text" placeholder="yourbusiness.com.au — or 'none yet'" />
-
-                <div>
-                  <label htmlFor="message" className="block font-mono text-[10px] uppercase tracking-[0.18em] text-muted mb-2">
-                    What does your business do?
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={4}
-                    className="w-full px-4 py-3 bg-cream border border-line rounded-2xl text-[15px] text-ink placeholder:text-muted focus:border-ink transition-colors"
-                    placeholder="e.g. Mobile dog grooming across the eastern suburbs — want online booking and a site that doesn't look like 2012."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  data-magnetic
-                  className="w-full inline-flex items-center justify-center gap-2 bg-ink text-cream px-6 py-3.5 rounded-full font-semibold text-[15px] hover:bg-ink-soft transition-colors"
-                >
-                  Send — get my free mockup <span aria-hidden>&rarr;</span>
-                </button>
-                <p className="text-[12px] text-muted text-center">
-                  Free mockup, no obligation. Reply within a business day.
-                </p>
-              </form>
+              <MockupLeadForm />
             </div>
           </RevealOnScroll>
         </div>
@@ -345,23 +298,6 @@ function Faq({ q, a }) {
   )
 }
 
-function Field({ id, label, type, placeholder, required }) {
-  return (
-    <div>
-      <label htmlFor={id} className="block font-mono text-[10px] uppercase tracking-[0.18em] text-muted mb-2">
-        {label}
-      </label>
-      <input
-        id={id}
-        name={id}
-        type={type}
-        required={required}
-        placeholder={placeholder}
-        className="w-full px-4 py-3 bg-cream border border-line rounded-2xl text-[15px] text-ink placeholder:text-muted focus:border-ink transition-colors"
-      />
-    </div>
-  )
-}
 
 function Eyebrow({ children }) {
   return (

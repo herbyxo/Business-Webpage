@@ -25,6 +25,12 @@ export async function POST(request) {
 
   const str = v => (typeof v === 'string' ? v.trim().slice(0, 500) : '')
 
+  // No way to contact them means no lead. Without this, an empty POST (a
+  // health probe, a bot, a double-submit with cleared fields) became a lead
+  // named "Website enquiry" with nothing in it. One of those is already in the
+  // engine from the deploy check that proved this route was live.
+  if (!str(body.email) && !str(body.phone)) return NextResponse.json({ ok: true, skipped: 'no contact details' })
+
   // The engine's generic shape (lib/leadIntake normalizeGeneric). A gclid means
   // the visit came from a Google ad, and that attribution is the whole reason
   // this proxy exists: the revenue dashboard joins leads back to ad spend.

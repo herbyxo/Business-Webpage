@@ -12,6 +12,7 @@ Herbert AI is a solo studio. Clients are small businesses across trades, hospita
 - [Pricing](https://herbert-aisolutions.com/pricing): How quoting works — priced on scope, not on a menu.
 - [About](https://herbert-aisolutions.com/about): About Will Herbert and how working with the studio actually goes.
 - [FAQ](https://herbert-aisolutions.com/faq): Common questions about timelines, pricing, customisation, contracts, and getting started.
+- [Bottleneck Pilot](https://herbert-aisolutions.com/pilot): Fixed-price entry offer. One live workflow on the business's worst admin bottleneck in 14 days, $3,500, credited in full toward a bigger build.
 - [Contact](https://herbert-aisolutions.com/contact): How to get in touch — email, phone, Calendly.
 
 ## Pricing

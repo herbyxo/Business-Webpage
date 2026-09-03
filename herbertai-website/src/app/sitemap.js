@@ -16,6 +16,7 @@ export default function sitemap() {
     { path: '/ai-receptionist', priority: 0.85 },
     { path: '/automation-adelaide', priority: 0.85 },
     { path: '/google-ads-adelaide', priority: 0.85 },
+    { path: '/pilot', priority: 0.9 },
   ]
   return routes.map((r) => ({
     url: `${BASE}${r.path}`,

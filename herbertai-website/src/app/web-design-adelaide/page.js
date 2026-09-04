@@ -76,14 +76,15 @@ export default function WebDesignAdelaide() {
             services, a real design you can click. Like it? You get a fixed quote and a
             live site in weeks. No templates, no agency retainers.
           </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="#mockup"
-              data-magnetic
-              className="inline-flex items-center gap-2 bg-green text-ink px-7 py-3.5 rounded-full font-semibold text-[15px] hover:shadow-[0_0_28px_var(--green-glow)] hover:-translate-y-px transition-all duration-300"
-            >
-              Get my free mockup <span aria-hidden>&rarr;</span>
-            </a>
+          {/* The capture itself, not a link to it. This used to be an anchor
+              that scrolled to a six-field form 31% down the document, which put
+              every field below the fold: 57% of page-viewing time is spent
+              above it (NN/g eyetracking), and mobile is 83% of the traffic.
+              Two fields, because a mockup cannot start without knowing the
+              business and where to send it. Anyone who wants to say more still
+              gets the full form below. */}
+          <div className="mt-10 max-w-[720px]">
+            <MockupLeadForm variant="compact" />
           </div>
 
           {/* Proof strip */}

@@ -16,7 +16,15 @@
 // sends, the thanks page still loads. The engine copy is an addition, never a
 // dependency.
 
-export default function MockupLeadForm() {
+// `compact` renders the same form with only the two fields a mockup actually
+// cannot start without: the business and where to send it. It exists because
+// the full form sat 31% down the document, below the fold, where 57% of
+// viewing attention never reaches (NN/g). Both variants are ONE component
+// posting to ONE endpoint, so the hidden fields, the engine notification and
+// the thanks redirect cannot drift apart.
+export default function MockupLeadForm({ variant = 'full' }) {
+  const compact = variant === 'compact'
+
   function notifyEngine(e) {
     try {
       const form = e.currentTarget
@@ -45,7 +53,7 @@ export default function MockupLeadForm() {
 
   return (
     <form action="https://api.web3forms.com/submit" method="POST"
-      onSubmit={notifyEngine} className="space-y-5">
+      onSubmit={notifyEngine} className={compact ? 'space-y-3' : 'space-y-5'}>
       <input type="hidden" name="access_key" value="f3618e04-e007-4ee9-a80d-f96e3cc8d481" />
       <input type="hidden" name="from_name" value="Herbert AI — Web Design Adelaide" />
       <input type="hidden" name="subject" value="New mockup request — Web Design Adelaide" />
@@ -63,6 +71,32 @@ export default function MockupLeadForm() {
       {/* Honeypot for spam */}
       <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
 
+      {compact ? (
+        <>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input
+              id="c-business" name="business" type="text" required autoComplete="organization"
+              placeholder="Your business"
+              className="flex-1 min-w-0 px-5 py-3.5 bg-cream border border-line rounded-full text-[15px] text-ink placeholder:text-muted focus:border-ink focus:outline-none transition-colors"
+            />
+            <input
+              id="c-email" name="email" type="email" required autoComplete="email"
+              placeholder="you@business.com"
+              className="flex-1 min-w-0 px-5 py-3.5 bg-cream border border-line rounded-full text-[15px] text-ink placeholder:text-muted focus:border-ink focus:outline-none transition-colors"
+            />
+            <button
+              type="submit" data-magnetic
+              className="shrink-0 inline-flex items-center justify-center gap-2 bg-green text-ink px-7 py-3.5 rounded-full font-semibold text-[15px] hover:shadow-[0_0_28px_var(--green-glow)] hover:-translate-y-px transition-all duration-300"
+            >
+              Get my free mockup <span aria-hidden>&rarr;</span>
+            </button>
+          </div>
+          <p className="text-[13px] text-muted">
+            48 hours, no obligation. You only pay if you say yes to the quote.
+          </p>
+        </>
+      ) : (
+      <>
       <Field id="name" label="Your name" type="text" placeholder="Your name" required />
       <Field id="business" label="Business name" type="text" placeholder="Your business" required />
       <Field id="email" label="Email" type="email" placeholder="you@business.com" required />
@@ -71,12 +105,17 @@ export default function MockupLeadForm() {
 
       <div>
         <label htmlFor="message" className="block font-mono text-[10px] uppercase tracking-[0.18em] text-muted mb-2">
-          What does your business do?
+          What does your business do? (optional)
         </label>
+        {/* Not required. A required free-text box is the most expensive field
+            on any form: it asks someone to compose a paragraph before we have
+            earned anything, and it sat between every visitor and the offer.
+            What it collects is genuinely useful for the mockup, so it stays on
+            the form, but it is asked again in the follow-up email rather than
+            enforced here. */}
         <textarea
           id="message"
           name="message"
-          required
           rows={4}
           className="w-full px-4 py-3 bg-cream border border-line rounded-2xl text-[15px] text-ink placeholder:text-muted focus:border-ink transition-colors"
           placeholder="e.g. Mobile dog grooming across the eastern suburbs — want online booking and a site that doesn't look like 2012."
@@ -88,11 +127,13 @@ export default function MockupLeadForm() {
         data-magnetic
         className="w-full inline-flex items-center justify-center gap-2 bg-ink text-cream px-6 py-3.5 rounded-full font-semibold text-[15px] hover:bg-ink-soft transition-colors"
       >
-        Send — get my free mockup <span aria-hidden>&rarr;</span>
+        Send &mdash; get my free mockup <span aria-hidden>&rarr;</span>
       </button>
       <p className="text-[12px] text-muted text-center">
         Free mockup, no obligation. Reply within a business day.
       </p>
+      </>
+      )}
     </form>
   )
 }

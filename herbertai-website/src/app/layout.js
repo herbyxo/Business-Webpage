@@ -9,9 +9,14 @@ import LenisProvider from './components/motion/LenisProvider'
 import MagneticCursor from './components/motion/MagneticCursor'
 import './globals.css'
 
+// Only the weights the site actually uses. Every extra weight is another file
+// competing for bandwidth in the window before the headline paints, and a
+// Lighthouse mobile audit put LCP at 6.1s with 123KB of fonts in flight.
+// Audited against the codebase: font-bold (700), font-semibold (600),
+// font-medium (500) and the 400 default are used; 300 was used nowhere.
 const geist = Geist({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-geist',
   display: 'swap',
 })
@@ -21,10 +26,13 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   display: 'swap',
 })
+// Italic only: the serif appears exclusively through `.serif-em`, which sets
+// font-style italic. The upright face was downloaded on every page and used on
+// none of them.
 const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   weight: '400',
-  style: ['normal', 'italic'],
+  style: ['italic'],
   variable: '--font-instrument-serif',
   display: 'swap',
 })
@@ -141,6 +149,13 @@ const jsonLd = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable} ${bricolage.variable}`}>
+      <head>
+        {/* The TLS handshake to Google's tag host costs ~490ms on mobile
+            (Lighthouse estimate) and it is paid serially when the tag loads.
+            Opening the connection early overlaps it with the rest of the page. */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </head>
       <body className="min-h-screen flex flex-col bg-cream text-ink font-sans">
         <a href="#main" className="skip-link">Skip to content</a>
         <LenisProvider>
@@ -156,10 +171,18 @@ export default function RootLayout({ children }) {
         <Analytics />
         <SpeedInsights />
         <TrackBeacon />
-        {/* Google Ads tag — conversion tracking for paid campaigns */}
+        {/* Google Ads tag: conversion tracking for paid campaigns.
+            lazyOnload, not afterInteractive. At 145KB (60KB of it unused) this
+            is the single heaviest asset on the site, and on afterInteractive it
+            competed for bandwidth in the window before the headline painted:
+            the tag measuring ad conversions was hurting the ad quality score
+            that decides whether the ads serve at all. Conversions are unaffected
+            because the event fires on /start/thanks, which queues into
+            window.dataLayer before this library arrives, and gtag replays that
+            queue on load. */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18228080032"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
         <Script id="gtag-init" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];

@@ -1,5 +1,6 @@
 import RevealOnScroll from '../components/motion/RevealOnScroll'
 import MockupLeadForm from '../components/MockupLeadForm'
+import MockupProof from '../components/MockupProof'
 
 export const metadata = {
   title: { absolute: 'Web Design Adelaide | Free Homepage Mockup in 48 Hours' },
@@ -125,6 +126,8 @@ export default function WebDesignAdelaide() {
           </div>
         </div>
       </section>
+
+      <MockupProof />
 
       {/* ─── Why a mockup / proof ─── */}
       <section className="bg-cream">

@@ -239,13 +239,13 @@ export default function WebDesignAdelaide() {
           <h2 className="font-display text-ink mx-auto max-w-[18ch]" style={{ fontSize: 'var(--text-display-md)', lineHeight: 0.96, letterSpacing: '-0.035em', fontWeight: 800 }}>
             Your new website, designed by Thursday.
           </h2>
-          <a
-            href="#mockup"
-            data-magnetic
-            className="mt-10 inline-flex items-center gap-2 bg-ink text-cream px-8 py-4 rounded-full font-semibold text-[16px] hover:bg-ink-soft transition-colors"
-          >
-            Get my free mockup <span aria-hidden>&rarr;</span>
-          </a>
+          {/* The form itself, not a link back up to it. This anchored to
+              #mockup, which sits ABOVE the FAQ, so the single button at the point
+              of highest intent scrolled the reader backwards past content they
+              had already read. Same component, same endpoint, same redirect. */}
+          <div className="mt-10 max-w-[620px] mx-auto text-left">
+            <MockupLeadForm variant="compact" onGreen />
+          </div>
         </div>
       </section>
     </>

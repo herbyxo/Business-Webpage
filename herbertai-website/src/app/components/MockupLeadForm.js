@@ -22,7 +22,7 @@
 // viewing attention never reaches (NN/g). Both variants are ONE component
 // posting to ONE endpoint, so the hidden fields, the engine notification and
 // the thanks redirect cannot drift apart.
-export default function MockupLeadForm({ variant = 'full' }) {
+export default function MockupLeadForm({ variant = 'full', onGreen = false }) {
   const compact = variant === 'compact'
 
   function notifyEngine(e) {
@@ -86,12 +86,16 @@ export default function MockupLeadForm({ variant = 'full' }) {
             />
             <button
               type="submit" data-magnetic
-              className="shrink-0 inline-flex items-center justify-center gap-2 bg-green text-ink px-7 py-3.5 rounded-full font-semibold text-[15px] hover:shadow-[0_0_28px_var(--green-glow)] hover:-translate-y-px transition-all duration-300"
+              className={`shrink-0 inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-semibold text-[15px] transition-all duration-300 ${
+                onGreen
+                  ? 'bg-ink text-cream hover:bg-ink-soft'
+                  : 'bg-green text-ink hover:shadow-[0_0_28px_var(--green-glow)] hover:-translate-y-px'
+              }`}
             >
               Get my free mockup <span aria-hidden>&rarr;</span>
             </button>
           </div>
-          <p className="text-[13px] text-muted">
+          <p className={`text-[13px] ${onGreen ? 'text-ink/70' : 'text-muted'}`}>
             48 hours, no obligation. You only pay if you say yes to the quote.
           </p>
         </>
